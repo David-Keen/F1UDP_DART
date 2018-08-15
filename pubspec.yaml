@@ -1,0 +1,8 @@
+name: f1_udp
+version: 0.1.0
+description: A ByteBuffer wrapper which incroments the index after grabbing data
+author: TheKeenProgrammer
+
+dependencies:
+  dk_byte_data:
+    git: https://github.com/TheKeenProgrammer/DKByteData.git
