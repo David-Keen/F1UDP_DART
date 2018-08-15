@@ -1,4 +1,4 @@
-library udp;
+library f1_udp;
 import 'package:dk_byte_data/dk_byte_data.dart.dart';
 import 'dart:io';
 import 'dart:async';
