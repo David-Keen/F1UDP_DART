@@ -1,9 +1,4 @@
-import 'dart:async';
-import 'dart:io';
-import 'dart:typed_data';
-import 'package:dk_byte_data/dk_byte_data.dart.dart';
-import 'package:f1_udp/udp.dart';
-import 'variables.dart';
+part of 'udp.dart';
 
 StreamController<PacketCarTelemtryData> carTelemtryDataStream = StreamController();
 

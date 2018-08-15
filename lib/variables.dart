@@ -1,3 +1,4 @@
+part of 'udp.dart';
 class PacketId {
   static final int MOTION = 0;
   static final int SESSION = 1;

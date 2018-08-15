@@ -1,4 +1,4 @@
-part of '../udp.dart';
+part of '../../udp.dart';
 
 class PacketHeadder {
   int format;
