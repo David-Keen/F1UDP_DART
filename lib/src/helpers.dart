@@ -2,7 +2,7 @@ part of '../udp.dart';
 
 StreamController<PacketCarTelemtryData> carTelemtryDataStream = StreamController();
 
-void startF1UDP(int port) {
+void startF1UDP(int port) async {
   RawDatagramSocket.bind(InternetAddress.anyIPv4, port).then((RawDatagramSocket socket){
     socket.listen((RawSocketEvent e){
       Datagram datagram = socket.receive();
