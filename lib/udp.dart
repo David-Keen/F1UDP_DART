@@ -5,9 +5,13 @@ import 'dart:async';
 import 'dart:typed_data';
 
 part 'src/variables.dart';
+part 'src/ClassStructure/PacketHeadder.dart';
 part 'src/ClassStructure/CarTelemtry.dart';
 part 'src/ClassStructure/CarSetupData.dart';
-part 'src/ClassStructure/PacketHeadder.dart';
+part 'src/ClassStructure/CarStatus.dart';
+
+
 part 'src/PacketStructure/CarTelemtry.dart';
 part 'src/PacketStructure/CarSetup.dart';
+part 'src/PacketStructure/CarStatus.dart';
 part 'src/helpers.dart';
