@@ -6,3 +6,5 @@ author: TheKeenProgrammer
 dependencies:
   dk_byte_data:
     git: https://github.com/TheKeenProgrammer/DKByteData.git
+environment:
+  sdk: ">=2.0.0-dev.68.0 <3.0.0"
