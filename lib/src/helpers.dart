@@ -17,9 +17,9 @@ void startF1UDP(int port) async {
       } else if(packetHeadder.id == PacketId.CAR_SETUPS){
         carSetupDataStream.add(PacketCarSetup(data, packetHeadder));
       } else if(packetHeadder.id == PacketId.CAR_STATUS) {
-        carStatusDataStream.add(PacketCarSetup(data, packetHeadder));
+        carStatusDataStream.add(PacketCarStatus(data, packetHeadder));
       }
-      
+
     });
   });
 }
