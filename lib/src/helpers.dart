@@ -14,7 +14,7 @@ Stream<PacketCarSetup> carSetupDataStream = _carSetupDataStream.stream.asBroadca
 Stream<PacketCarStatus> carStatusDataStream = _carStatusDataStream.stream.asBroadcastStream();
 Stream<PacketSessionInfo> sessionInfoStream = _sessionInfoStream.stream.asBroadcastStream();
 Stream<PacketParticipantsData> participantsDataStream = _participantsDataStream.stream.asBroadcastStream();
-Stream<PacketLapData> LapDataStream = _lapDataStream.stream.asBroadcastStream();
+Stream<PacketLapData> lapDataStream = _lapDataStream.stream.asBroadcastStream();
 
 
 //PacketParticipantsData
