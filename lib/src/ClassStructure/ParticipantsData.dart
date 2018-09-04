@@ -13,7 +13,7 @@ class ParticipantsData{
     driverId = data.nextUint8();
     teamId = data.nextUint8();
     raceNumber = data.nextUint8();
-    nationality = data.nextUint();
+    nationality = data.nextUint8();
     name = data.nextString(length: 48);
   }
 }
