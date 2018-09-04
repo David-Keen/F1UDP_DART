@@ -11,10 +11,12 @@ part 'src/ClassStructure/CarSetupData.dart';
 part 'src/ClassStructure/SessionInfo.dart';
 part 'src/ClassStructure/CarStatus.dart';
 part 'src/ClassStructure/ParticipantsData.dart';
+part 'src/ClassStructure/LapData.dart';
 
 part 'src/PacketStructure/CarTelemtry.dart';
 part 'src/PacketStructure/CarSetup.dart';
 part 'src/PacketStructure/CarStatus.dart';
 part 'src/PacketStructure/SessionInfo.dart';
 part 'src/PacketStructure/ParticipantsData.dart';
+part 'src/PacketStructure/LapData.dart';
 part 'src/helpers.dart';

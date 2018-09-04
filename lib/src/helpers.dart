@@ -4,7 +4,8 @@ StreamController<PacketCarTelemtryData> _carTelemtryDataStream = StreamControlle
 StreamController<PacketCarSetup> _carSetupDataStream = StreamController();
 StreamController<PacketCarStatus> _carStatusDataStream = StreamController();
 StreamController<PacketSessionInfo> _sessionInfoStream = StreamController<PacketSessionInfo>();
-StreamController<PacketParticipantsData> _participantsData = StreamController<PacketParticipantsData>();
+StreamController<PacketParticipantsData> _participantsDataStream = StreamController<PacketParticipantsData>();
+StreamController<PacketLapData> _lapDataStream = StreamController<PacketLapData>();
 
 
 Stream<PacketCarTelemtryData> carTelemtryStream = _carTelemtryDataStream.stream.asBroadcastStream();
@@ -12,7 +13,8 @@ Stream<PacketSessionInfo> sessionStream = _sessionInfoStream.stream.asBroadcastS
 Stream<PacketCarSetup> carSetupDataStream = _carSetupDataStream.stream.asBroadcastStream();
 Stream<PacketCarStatus> carStatusDataStream = _carStatusDataStream.stream.asBroadcastStream();
 Stream<PacketSessionInfo> sessionInfoStream = _sessionInfoStream.stream.asBroadcastStream();
-Stream<PacketParticipantsData> participantsDataStream = _participantsData.stream.asBroadcastStream();
+Stream<PacketParticipantsData> participantsDataStream = _participantsDataStream.stream.asBroadcastStream();
+Stream<PacketLapData> LapDataStream = _lapDataStream.stream.asBroadcastStream();
 
 
 //PacketParticipantsData
@@ -33,7 +35,9 @@ void startF1UDP(int port) async {
       } else if(packetHeadder.id == PacketId.SESSION) {
         _sessionInfoStream.add(PacketSessionInfo(data));
       } else if(packetHeadder.id == PacketId.PARTICIPANTS){
-        _participantsData.add(PacketParticipantsData(data, headder: packetHeadder));
+        _participantsDataStream.add(PacketParticipantsData(data, headder: packetHeadder));
+      } else if(packetHeadder.id == PacketId.LAP_DATA) {
+        _lapDataStream.add(PacketLapData(data, headder: packetHeadder));
       }
     });
   });
