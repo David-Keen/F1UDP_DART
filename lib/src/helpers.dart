@@ -1,9 +1,15 @@
 part of '../udp.dart';
 
-StreamController<PacketCarTelemtryData> carTelemtryDataStream = StreamController();
-StreamController<PacketCarSetup> carSetupDataStream = StreamController();
-StreamController<PacketCarStatus> carStatusDataStream = StreamController();
-StreamController<PacketSessionInfo> sessionInfoStream = StreamController();
+StreamController<PacketCarTelemtryData> _carTelemtryDataStream = StreamController();
+StreamController<PacketCarSetup> _carSetupDataStream = StreamController();
+StreamController<PacketCarStatus> _carStatusDataStream = StreamController();
+StreamController<PacketSessionInfo> _sessionInfoStream = StreamController<PacketSessionInfo>();
+
+
+Stream<PacketSessionInfo> sessionStream = _sessionInfoStream.stream.asBroadcastStream();
+Stream<PacketCarSetup> carSetupDataStream = _carSetupDataStream.stream.asBroadcastStream();
+Stream<PacketCarStatus> carStatusDataStream = _carStatusDataStream.stream.asBroadcastStream();
+Stream<PacketSessionInfo> sessionInfoStream = _sessionInfoStream.stream.asBroadcastStream();
 
 void startF1UDP(int port) async {
   print("Starting");
@@ -15,13 +21,14 @@ void startF1UDP(int port) async {
       PacketHeadder packetHeadder = PacketHeadder(data);
 
       if(packetHeadder.id == PacketId.CAR_TELEMTRY) {
-        carTelemtryDataStream.add(PacketCarTelemtryData(data, packetHeadder));
+        _carTelemtryDataStream.add(PacketCarTelemtryData(data, packetHeadder));
       } else if(packetHeadder.id == PacketId.CAR_SETUPS){
-        carSetupDataStream.add(PacketCarSetup(data, packetHeadder));
+        _carSetupDataStream.add(PacketCarSetup(data, packetHeadder));
       } else if(packetHeadder.id == PacketId.CAR_STATUS) {
-        carStatusDataStream.add(PacketCarStatus(data, packetHeadder));
+        _carStatusDataStream.add(PacketCarStatus(data, packetHeadder));
       } else if(packetHeadder.id == PacketId.SESSION) {
-        sessionInfoStream.add(PacketSessionInfo(data));
+        print("Adding sink");
+        _sessionInfoStream.add(PacketSessionInfo(data));//.add(PacketSessionInfo(data));//.add(PacketSessionInfo(data));
       }
     });
   });
