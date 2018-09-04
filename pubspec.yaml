@@ -1,5 +1,5 @@
 name: f1_udp
-version: 0.5.2
+version: 0.6.0
 description: A ByteBuffer wrapper which incroments the index after grabbing data
 author: TheKeenProgrammer
 

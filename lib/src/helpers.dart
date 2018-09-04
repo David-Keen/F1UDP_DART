@@ -4,6 +4,7 @@ StreamController<PacketCarTelemtryData> _carTelemtryDataStream = StreamControlle
 StreamController<PacketCarSetup> _carSetupDataStream = StreamController();
 StreamController<PacketCarStatus> _carStatusDataStream = StreamController();
 StreamController<PacketSessionInfo> _sessionInfoStream = StreamController<PacketSessionInfo>();
+StreamController<PacketParticipantsData> _participantsData = StreamController<PacketParticipantsData>();
 
 
 Stream<PacketCarTelemtryData> carTelemtryStream = _carTelemtryDataStream.stream.asBroadcastStream();
@@ -11,7 +12,10 @@ Stream<PacketSessionInfo> sessionStream = _sessionInfoStream.stream.asBroadcastS
 Stream<PacketCarSetup> carSetupDataStream = _carSetupDataStream.stream.asBroadcastStream();
 Stream<PacketCarStatus> carStatusDataStream = _carStatusDataStream.stream.asBroadcastStream();
 Stream<PacketSessionInfo> sessionInfoStream = _sessionInfoStream.stream.asBroadcastStream();
+Stream<PacketParticipantsData> participantsDataStream = _participantsData.stream.asBroadcastStream();
 
+
+//PacketParticipantsData
 void startF1UDP(int port) async {
   await RawDatagramSocket.bind(InternetAddress.anyIPv4, port).then((RawDatagramSocket socket){
     socket.listen((RawSocketEvent e){
@@ -28,6 +32,8 @@ void startF1UDP(int port) async {
         _carStatusDataStream.add(PacketCarStatus(data, packetHeadder));
       } else if(packetHeadder.id == PacketId.SESSION) {
         _sessionInfoStream.add(PacketSessionInfo(data));
+      } else if(packetHeadder.id == PacketId.PARTICIPANTS){
+        _participantsData.add(PacketParticipantsData(data, headder: packetHeadder));
       }
     });
   });
