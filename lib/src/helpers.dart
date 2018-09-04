@@ -6,13 +6,13 @@ StreamController<PacketCarStatus> _carStatusDataStream = StreamController();
 StreamController<PacketSessionInfo> _sessionInfoStream = StreamController<PacketSessionInfo>();
 
 
+Stream<PacketCarTelemtryData> carTelemtryStream = _carTelemtryDataStream.stream.asBroadcastStream();
 Stream<PacketSessionInfo> sessionStream = _sessionInfoStream.stream.asBroadcastStream();
 Stream<PacketCarSetup> carSetupDataStream = _carSetupDataStream.stream.asBroadcastStream();
 Stream<PacketCarStatus> carStatusDataStream = _carStatusDataStream.stream.asBroadcastStream();
 Stream<PacketSessionInfo> sessionInfoStream = _sessionInfoStream.stream.asBroadcastStream();
 
 void startF1UDP(int port) async {
-  print("Starting");
   await RawDatagramSocket.bind(InternetAddress.anyIPv4, port).then((RawDatagramSocket socket){
     socket.listen((RawSocketEvent e){
       Datagram datagram = socket.receive();
@@ -27,8 +27,7 @@ void startF1UDP(int port) async {
       } else if(packetHeadder.id == PacketId.CAR_STATUS) {
         _carStatusDataStream.add(PacketCarStatus(data, packetHeadder));
       } else if(packetHeadder.id == PacketId.SESSION) {
-        print("Adding sink");
-        _sessionInfoStream.add(PacketSessionInfo(data));//.add(PacketSessionInfo(data));//.add(PacketSessionInfo(data));
+        _sessionInfoStream.add(PacketSessionInfo(data));
       }
     });
   });
