@@ -9,6 +9,7 @@ class PacketCarStatus {
     for(int i = 0; i < 20; i++) {
       carStatus[i] = CarStatus(data);
     }
+    buttonStatus = data.nextUint8();
     // buttonStatus = data.nextUint();
   }
 }
